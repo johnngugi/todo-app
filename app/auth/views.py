@@ -1,6 +1,8 @@
 from flask import render_template, session, request, url_for, flash, redirect
 from . import auth
 from .oauth import twitter
+from ..models import User
+from .. import db
 
 
 @twitter.tokengetter
@@ -41,5 +43,13 @@ def oauth_authorized(resp):
         resp['oauth_token'],
         resp['oauth_token_secret']
     )
+
+    social_id = resp['id']
+    username = resp['screen_name']
+    user = User.query.filter_by(social_id=social_id).first()
+    if not user:
+        user = User(social_id=social_id, nickname=username)
+        db.session.add(user)
+        db.session.commit()
 
     return redirect(url_for('main.index'))
