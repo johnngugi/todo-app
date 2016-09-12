@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="/new" method="post">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>New Task:</legend>
+        Task:<br>
+        {{ form.task }}<br><br>
+        Description: <br>
+        {{ form.description }}<br><br>
+        Category:<br>
+        {{ form.category }}<br><br>
+        Priority: <br>
+        {{ form.priority }}<br><br>
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+</body>
+</html>

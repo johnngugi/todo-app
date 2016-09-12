@@ -24,11 +24,18 @@ class Todo(db.Model):
     category_id = db.Column('category_id', db.Integer, db.ForeignKey('category.id'))
     priority_id = db.Column('priority_id', db.Integer, db.ForeignKey('priority.id'))
     description = db.Column('description', db.String(255))
-    creation_date = db.Column('creation_date', db.Date, default=datetime.utcnow)
-    is_done = db.Column('is_done', db.Boolean, default=False)
+    creation_date = db.Column('creation_date', db.Date)
+    is_done = db.Column('is_done', db.Boolean)
 
     priority = db.relationship('Priority', foreign_keys=priority_id)
     category = db.relationship('Category', foreign_keys=category_id)
+
+    def __init__(self, category, priority, description):
+        self.category = category
+        self.priority = priority
+        self.description = description
+        self.creation_date = datetime.utcnow()
+        self.is_done = False
 
 
 class Priority(db.Model):
