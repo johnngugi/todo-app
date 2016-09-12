@@ -1,4 +1,5 @@
 from flask import render_template, session, request, url_for, flash, redirect
+from flask_login import login_user
 from . import auth
 from .oauth import twitter
 from ..models import User
@@ -51,5 +52,6 @@ def oauth_authorized(resp):
         user = User(social_id=social_id, nickname=username)
         db.session.add(user)
         db.session.commit()
+    login_user(user, True)
 
     return redirect(url_for('main.index'))

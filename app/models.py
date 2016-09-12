@@ -1,11 +1,6 @@
 from datetime import datetime
-from app import db, lm
+from app import db
 from flask_login import UserMixin
-
-
-@lm.user_loader
-def load_user(id):
-    return User.query.get(int(id))
 
 
 class User(UserMixin, db.Model):
@@ -14,7 +9,6 @@ class User(UserMixin, db.Model):
     social_id = db.Column(db.String(64), nullable=False, unique=True)
     nickname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=True)
-    todo = db.relationship('Todo', backref='author', lazy='dynamic')
 
 
 class Todo(db.Model):
@@ -29,10 +23,12 @@ class Todo(db.Model):
 
     priority = db.relationship('Priority', foreign_keys=priority_id)
     category = db.relationship('Category', foreign_keys=category_id)
+    user = db.relationship('User', foreign_keys=user_id)
 
-    def __init__(self, category, priority, description):
+    def __init__(self, category, priority, description, user):
         self.category = category
         self.priority = priority
+        self.user = user
         self.description = description
         self.creation_date = datetime.utcnow()
         self.is_done = False
