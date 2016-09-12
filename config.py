@@ -4,6 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    DEBUG = True
     WTF_CSRF_ENABLED = True
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')

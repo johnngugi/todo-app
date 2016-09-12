@@ -20,6 +20,7 @@ class User(UserMixin, db.Model):
 class Todo(db.Model):
     __tablename__ = "todo"
     id = db.Column('id', db.Integer, primary_key=True)
+    user_id = db.Column('user_id', db.Integer, db.ForeignKey('users.id'))
     category_id = db.Column('category_id', db.Integer, db.ForeignKey('category.id'))
     priority_id = db.Column('priority_id', db.Integer, db.ForeignKey('priority.id'))
     description = db.Column('description', db.String(255))

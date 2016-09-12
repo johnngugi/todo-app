@@ -44,7 +44,7 @@ def oauth_authorized(resp):
         resp['oauth_token_secret']
     )
 
-    social_id = resp['id']
+    social_id = resp['user_id']
     username = resp['screen_name']
     user = User.query.filter_by(social_id=social_id).first()
     if not user:
