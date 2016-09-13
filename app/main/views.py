@@ -3,7 +3,7 @@ from app import db, lm
 from ..models import Category, Priority, Todo, User
 from ..forms import NewTask
 from . import main
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 @lm.user_loader

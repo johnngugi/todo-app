@@ -31,7 +31,7 @@ def logout():
 @auth.route('/oauth-authorized')
 @twitter.authorized_handler
 def oauth_authorized(resp):
-    next_url = request.args.get('next') or url_for('main.index')
+    next_url = request.args.get('next') or url_for('auth.login')
     if resp is None:
         flash(u'You denied the request to sign in.')
         return redirect(next_url)

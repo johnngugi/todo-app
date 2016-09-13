@@ -18,5 +18,26 @@
   {% endif %}
 
     <a href="{{ url_for('main.new') }}">New</a>
+
+    <table>
+{% for category in categories %}
+<tr>
+<td>{{ category.name }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<table>
+    {%- for todo in todos %}
+               <tr>
+                   <td>{{ loop.index }} </td>
+                   <td>{{ todo.description }}</td>
+                   <td>{{ todo.category.name }}</td>
+                   <td>{{ todo.priority.name }}</td>
+                   <td>{{ todo.creation_date }}</td>
+                 </tr>
+           {%- endfor %}
+</table>
+
 </body>
 </html>
