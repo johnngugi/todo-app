@@ -1,4 +1,4 @@
-from flask import session, redirect, url_for, render_template, request
+from flask import session, redirect, url_for, render_template, request, g
 from app import db, lm
 from ..models import Category, Priority, Todo, User
 from ..forms import NewTask
@@ -13,11 +13,14 @@ def load_user(id):
 
 @main.before_request
 def before_request():
-    if not current_user.is_confirmed:
+    g.user = current_user
+    if not current_user.is_authenticated:
         return redirect(url_for('auth.authorize'))
 
 
 @main.route('/')
+@main.route('/index', methods=['GET', 'POST'])
+@login_required
 def index():
     access_token = session.get('access_token')
     if access_token is None:
@@ -31,9 +34,10 @@ def index():
 
 
 @main.route('/new', methods=['GET', 'POST'])
+@login_required
 def new():
     form = NewTask()
-    if form.validate_on_submit() and request.method == 'POST':
+    if request.method == 'POST':
         category = Category.query.filter_by(id=form.category.data).first()
         priority = Priority.query.filter_by(id=form.priority.data).first()
         todo = Todo(category, priority, description=form.description.data,
@@ -46,5 +50,6 @@ def new():
 
 
 @main.route('/category')
+@login_required
 def category():
     return render_template('category.html')

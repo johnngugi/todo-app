@@ -10,6 +10,11 @@ class User(UserMixin, db.Model):
     nickname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=True)
 
+    def __init__(self, social_id, nickname, email):
+        self.social_id = social_id
+        self.nickname = nickname
+        self.email = email
+
     def is_authenticated(self):
         return True
 

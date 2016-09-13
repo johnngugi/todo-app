@@ -8,22 +8,23 @@
 					
 					<div class="input-field col s12">
                         {{ form.description(class_="materialize-textarea") }}
-						<label for="description">Description</label>
+                        {{ form.description.label }}
 					</div>
 					
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						{{ form.category }}
-						<label>Materialize Select</label>
+                        {{ form.category.label }}
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						{{ form.priority }}
-						<label>Materialize Select</label>
+                        {{ form.priority.label }}
 					</div>
 				</div>
+
 				<button class="btn waves-effect waves-light" type="submit" name="action">Create task
 				<i class="material-icons right">send</i>
 				</button>

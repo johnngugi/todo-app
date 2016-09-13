@@ -1,5 +1,5 @@
 from flask import render_template, session, request, url_for, flash, redirect
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 from . import auth
 from .oauth import twitter
 from ..models import User
@@ -27,10 +27,13 @@ def login():
 
 
 @auth.route('/logout')
+@login_required
 def logout():
+    # user = User.query.filter_by(social_id=social_id).first()
     session.pop('screen_name', None)
     flash('You were signed out')
-    return redirect(request.referrer or url_for('main.index'))
+    logout_user()
+    return redirect(request.referrer or url_for('auth.authorize'))
 
 
 @auth.route('/oauth-authorized')

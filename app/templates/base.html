@@ -15,6 +15,9 @@
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li><a href="{{ url_for('main.new') }}">Todo</a></li>
 						<li><a href="{{ url_for('main.category') }}">Category</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                        {% endif %}
 					</ul>
 				</div>
 			</div>
