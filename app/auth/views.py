@@ -29,7 +29,6 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
-    # user = User.query.filter_by(social_id=social_id).first()
     session.pop('screen_name', None)
     flash('You were signed out')
     logout_user()
@@ -61,5 +60,6 @@ def oauth_authorized(resp):
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
+    flash("You are logged in")
 
     return redirect(url_for('main.index'))

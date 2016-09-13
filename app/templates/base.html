@@ -22,18 +22,16 @@
 				</div>
 			</div>
 		</nav>
-        {% block page_content %}
-            {% block content %}
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }} </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
-            {% endblock %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }} </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}
         {% endblock %}
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.0.0.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>

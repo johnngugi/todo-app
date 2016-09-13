@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% block page_content %}
 {% block content %}
         {% if session['screen_name'] %}
         Hello {{ session['screen_name'] }}!
@@ -29,7 +28,7 @@
                                 <td>{{ todo.priority.name }}</td>
                                 <td>{{ todo.creation_date }}</td>
 								<td>
-									<a class="btn-floating waves-effect waves-light blue" href=""><i class="material-icons">edit</i></a>
+									<a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.edit', id=todo.id) }}"><i class="material-icons">edit</i></a>
 									<a class="btn-floating waves-effect waves-light blue" href=""><i class="material-icons">delete</i></a>
 									<a class="btn-floating waves-effect waves-light blue" href=""><i class="material-icons">done</i></a>
 								</td>
@@ -40,5 +39,4 @@
 				</div>
 			</div>
 		</div>
-{% endblock %}
 {% endblock %}

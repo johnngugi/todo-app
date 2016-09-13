@@ -1,4 +1,4 @@
-from flask import session, redirect, url_for, render_template, request, g
+from flask import session, redirect, url_for, render_template, request, g, abort
 from app import db, lm
 from ..models import Category, Priority, Todo, User
 from ..forms import NewTask
@@ -47,6 +47,21 @@ def new():
         return redirect(url_for('main.index'))
     else:
         return render_template('new.html', form=form, categories=Category.query.all(), priorities=Priority.query.all())
+
+
+# @main.route('/edit<int:id>')
+# def edit(id):
+#     if not current_user.social_id:
+#         abort(403)
+#
+#     form = NewTask()
+#     if request.method == 'POST':
+#
+#         task.category = form.category.data
+#         task.priority = form.priority.data
+#         db.session.commit()
+#         return redirect(url_for('main.index', id=id))
+#     return render_template('edit.html', form=form)
 
 
 @main.route('/category')
