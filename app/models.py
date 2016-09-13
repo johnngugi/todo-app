@@ -10,6 +10,18 @@ class User(UserMixin, db.Model):
     nickname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=True)
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_confirmed(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
 
 class Todo(db.Model):
     __tablename__ = "todo"

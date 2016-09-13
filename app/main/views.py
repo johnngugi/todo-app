@@ -11,6 +11,12 @@ def load_user(id):
     return User.query.get(int(id))
 
 
+@main.before_request
+def before_request():
+    if not current_user.is_confirmed:
+        return redirect(url_for('auth.authorize'))
+
+
 @main.route('/')
 def index():
     access_token = session.get('access_token')
@@ -28,8 +34,8 @@ def index():
 def new():
     form = NewTask()
     if form.validate_on_submit() and request.method == 'POST':
-        category = Category.query.filter_by(id=request.form['category']).first()
-        priority = Priority.query.filter_by(id=request.form['priority']).first()
+        category = Category.query.filter_by(id=form.category.data).first()
+        priority = Priority.query.filter_by(id=form.priority.data).first()
         todo = Todo(category, priority, description=form.description.data,
                     user=current_user._get_current_object())
         db.session.add(todo)
@@ -37,3 +43,8 @@ def new():
         return redirect(url_for('main.index'))
     else:
         return render_template('new.html', form=form, categories=Category.query.all(), priorities=Priority.query.all())
+
+
+@main.route('/category')
+def category():
+    return render_template('category.html')

@@ -13,6 +13,11 @@ def get_twitter_token(token=None):
     return session.get('twitter_oauth_tokens')
 
 
+@auth.route('/authorize')
+def authorize():
+    return render_template('auth/login.html')
+
+
 @auth.route('/login')
 def login():
     callback = url_for('auth.oauth_authorized',
