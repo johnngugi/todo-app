@@ -40,13 +40,39 @@ def new():
     if request.method == 'POST':
         category = Category.query.filter_by(id=form.category.data).first()
         priority = Priority.query.filter_by(id=form.priority.data).first()
-        todo = Todo(category, priority, description=form.description.data,
-                    user=current_user._get_current_object())
+        todo = Todo(category, priority, request.form['description'], user=current_user._get_current_object())
         db.session.add(todo)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect('/')
     else:
-        return render_template('new.html', form=form, categories=Category.query.all(), priorities=Priority.query.all())
+        return render_template(
+            'new.html',
+            categories=Category.query.all(),
+            priorities=Priority.query.all(),
+            form=form)
+
+
+@main.route('/<int:todo_id>', methods=['GET', 'POST'])
+def update_todo(todo_id):
+    form = NewTask()
+    todo = Todo.query.get(todo_id)
+    if request.method == 'GET':
+        return render_template(
+            'edit.html',
+            todo=todo,
+            categories=Category.query.all(),
+            priorities=Priority.query.all(),
+            form=form
+        )
+    else:
+        category = Category.query.filter_by(id=form.category.data).first()
+        priority = Priority.query.filter_by(id=form.priority.data).first()
+        description = request.form['description']
+        todo.category = category
+        todo.priority = priority
+        todo.description = description
+        db.session.commit()
+        return redirect('/')
 
 
 # @main.route('/edit<int:id>')
@@ -62,6 +88,10 @@ def new():
 #         db.session.commit()
 #         return redirect(url_for('main.index', id=id))
 #     return render_template('edit.html', form=form)
+
+@main.route('/done')
+def done():
+    task = Todo.query.filter_by()
 
 
 @main.route('/category')
