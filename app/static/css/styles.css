@@ -3,3 +3,7 @@
 	padding: 10%;
 	vertical-align: center;
 }
+
+#delform {
+	display: inline-block;
+}

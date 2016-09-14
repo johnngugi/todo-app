@@ -67,7 +67,7 @@ def update_todo(todo_id):
     else:
         category = Category.query.filter_by(id=form.category.data).first()
         priority = Priority.query.filter_by(id=form.priority.data).first()
-        description = request.form['description']
+        description = form.description.data
         todo.category = category
         todo.priority = priority
         todo.description = description
@@ -75,18 +75,22 @@ def update_todo(todo_id):
         return redirect('/')
 
 
-# @main.route('/delete/<int:todo_id>', methods=['GET', 'POST'])
-# def delete(todo_id):
-#     if request.method == 'post':
-#         todo = Todo.query.filter_by(todo_id).delete()
-#         db.session.commit()
-#         return redirect(url_for('main.index'))
-#     # return render_template('delete.html')
+@main.route('/delete-todo/<int:todo_id>', methods=['POST'])
+def delete_todo(todo_id):
+    if request.method == 'POST':
+        todo = Todo.query.get(todo_id)
+        db.session.delete(todo)
+        db.session.commit()
+        return redirect('/')
 
 
-@main.route('/done')
-def done():
-    task = Todo.query.filter_by()
+@main.route('/mark-done/<int:todo_id>', methods=['POST'])
+def mark_done(todo_id):
+    if request.method == 'POST':
+        todo = Todo.query.get(todo_id)
+        todo.is_done = True
+        db.session.commit()
+        return redirect('/')
 
 
 @main.route('/category')
