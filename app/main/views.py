@@ -75,19 +75,14 @@ def update_todo(todo_id):
         return redirect('/')
 
 
-# @main.route('/edit<int:id>')
-# def edit(id):
-#     if not current_user.social_id:
-#         abort(403)
-#
-#     form = NewTask()
-#     if request.method == 'POST':
-#
-#         task.category = form.category.data
-#         task.priority = form.priority.data
+# @main.route('/delete/<int:todo_id>', methods=['GET', 'POST'])
+# def delete(todo_id):
+#     if request.method == 'post':
+#         todo = Todo.query.filter_by(todo_id).delete()
 #         db.session.commit()
-#         return redirect(url_for('main.index', id=id))
-#     return render_template('edit.html', form=form)
+#         return redirect(url_for('main.index'))
+#     # return render_template('delete.html')
+
 
 @main.route('/done')
 def done():
