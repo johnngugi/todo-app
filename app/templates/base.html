@@ -25,14 +25,18 @@
         </div>
         <div class="row" style="margin-top:2%;">
             {% block content %}
-                <p class="logo">Todoapp</p>
+            <ul id="nav-mobile" class="side-nav fixed grey darken-4 blue-grey-text text-lighten-4 go" style="transform: translateX(-100%);">
+            <li>
+                <div style="text-align:center;" id="logo">
+                    <p class="logo">Todoapp</p>
                     <p>
                         {% if session['screen_name'] %}
                             Hello {{ session['screen_name'] }}!
                         {% endif %}
                     </p>
                     <br />
-            <ul id="nav-mobile" class="side-nav fixed grey darken-4 blue-grey-text text-lighten-4 go" style="transform: translateX(-100%);">
+                </div>
+            </li>
                 <li><a  class="white-text" href="{{ url_for('main.index') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>Home</a></li>
                 <li><a  class="light-green-text text-accent-4" href="{{ url_for('main.new') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>New todo</a></li>
                 <li><a id="links" class="teal-text text-lighten-2" href="{{ url_for('main.category') }}"><i class="white-text fa fa-tag" aria-hidden="true"></i>Categories</a></li>
