@@ -15,7 +15,8 @@ class Config:
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'mysql://john:root@localhost/todo'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgres://kfajlmuyzwrxtq:dQCRdPb5XF9urQ2iIpe1vXFht0@ec2-54-243-204-129.compute-1.amazonaws.com:5432/d58pennmbbfm3h'
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 config = {'production': ProductionConfig}
