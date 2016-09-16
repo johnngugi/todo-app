@@ -50,7 +50,7 @@ def new():
         )
 
 
-@main.route('/<int:todo_id>', methods=['GET', 'POST'])
+@main.route('/update/<int:todo_id>', methods=['GET', 'POST'])
 def update_todo(todo_id):
     todo = Todo.query.get(todo_id)
     if request.method == 'GET':
@@ -95,6 +95,19 @@ def category():
     return render_template('category.html', categories=Category.query.all())
 
 
+@main.route('/new_category', methods=['GET', 'POST'])
+@login_required
+def new_category():
+    if request.method == 'POST':
+        name = request.form['category']
+        new_category = Category(name)
+        db.session.add(new_category)
+        db.session.commit()
+        return redirect(url_for('main.category'))
+    else:
+        return render_template('newcat.html')
+
+
 @main.route('/update_category/<int:category_id>', methods=['GET', 'POST'])
 @login_required
 def update_category(category_id):
@@ -105,7 +118,7 @@ def update_category(category_id):
         categoryname = request.form['category']
         category.name = categoryname
         db.session.commit()
-        return redirect('/')
+        return redirect(url_for('main.category'))
 
 
 @main.route('/delete_category/<int:category_id>', methods=['POST'])
@@ -118,4 +131,4 @@ def delete_category(category_id):
             db.session.commit()
         else:
             flash("You have todos with that category")
-        return redirect('/')
+        return redirect(url_for('main.category'))
