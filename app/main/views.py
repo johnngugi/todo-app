@@ -104,3 +104,8 @@ def category():
     else:
         return render_template('category.html', categories=Category.query.all(),
                                todos=Todo.query.join(Priority).order_by(Priority.value.desc()))
+
+
+# @main.route('/updatecat/<int:todo_id>', methods=['GET', 'POST'])
+# def update_category():
+#

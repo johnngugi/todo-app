@@ -23,9 +23,12 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
+                        <select name="priority" id="priority">
                         {% for priority in priorities %}
                             <option value="{{ priority.id }}" {% if todo is defined %}{% if todo.priority_id == priority.id %} selected {% endif %}{% endif %}>{{ priority.name }}</option>
                         {% endfor %}
+                        </select>
+                        <label for="priority"></label>
 					</div>
 				</div>
 

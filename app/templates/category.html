@@ -25,12 +25,7 @@
                         {% for category in categories %}
                             <tr>
                                 <td>{{ category.name }}</td>
-{#                                <td>#}
-{#                                    <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_todo', todo_id=todo.id) }}"><i class="material-icons">edit</i></a>#}
-{#                                    <form id=delform action="{{ url_for('main.delete_todo', todo_id=todo.id) }}" method="post">#}
-{#                                        <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_todo" value="Delete"><i class="material-icons">delete</i></button>#}
-{#                                    </form>#}
-{#								</td>#}
+                                <td></td>
                             </tr>
                         {% endfor %}
                         </table>
