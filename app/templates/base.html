@@ -2,26 +2,12 @@
 <html>
 	<head>
 		<title>Todo App</title>
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}" media="screen,projection" />
 		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-{#		<nav class="black lightness-2">#}
-{#			<div class="container">#}
-{#				<div class="nav-wrapper">#}
-{#					<a href="{{ url_for('main.index') }}" class="brand-logo">Logo</a>#}
-{#					<ul id="nav-mobile" class="right hide-on-med-and-down">#}
-{#						<li><a href="{{ url_for('main.new') }}">Todo</a></li>#}
-{#						<li><a href="{{ url_for('main.category') }}">Category</a></li>#}
-{#                        {% if current_user.is_authenticated %}#}
-{#                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>#}
-{#                        {% endif %}#}
-{#					</ul>#}
-{#				</div>#}
-{#			</div>#}
-{#		</nav>#}
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul>
