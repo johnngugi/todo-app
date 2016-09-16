@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Todo App</title>
-		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}" media="screen,projection" />
-		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <head>
+        <title>Todo App</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
         <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	</head>
-	<body>
+        <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{ message }} </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-        <div class="row" style="margin-top:2%;">
-			<div class="container">
-                {% block content %}
-                    <div class="col s3">
-                        <ul id="staggered-list" class="side-nav fixed grey darken-4 blue-grey-text text-lighten-4 go">
-                            <br />
-                            <div style="text-align:center;" id="logo">
-                                <p class="logo">Todoapp</p>
-                                <p>
-                                    {% if session['screen_name'] %}
-                                        Hello {{ session['screen_name'] }}!
-                                    {% endif %}
-                                </p>
-                                <br />
-                            </div>
-                            <br /> <br />
-                            <li><a  class="white-text" href="{{ url_for('main.index') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>Home</a></li>
-                            <li><a  class="light-green-text text-accent-4" href="{{ url_for('main.new') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>New todo</a></li>
-                            <li><a id="links" class="teal-text text-lighten-2" href="{{ url_for('main.category') }}"><i class="white-text fa fa-tag" aria-hidden="true"></i>Categories</a></li>
-                            <li><a id="links" class="deep-orange-text text-accent-4" href="{{ url_for('auth.logout') }}"><i class="white-text fa fa-sign-out fa-2x" aria-hidden="true"></i></i>Logout</a></li>
-					    </ul>
-				    </div>
-                {% endblock %}
-            </div>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+        <div class="container">
+            <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+                <i class="material-icons">menu</i>
+            </a>
         </div>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.0.0.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
-	</body>
+        <div class="row" style="margin-top:2%;">
+            {% block content %}
+            <ul id="nav-mobile" class="side-nav fixed grey darken-4 blue-grey-text text-lighten-4 go" style="transform: translateX(-100%);">
+                <ul class="collapsible collapsible-accordion">
+                    <div style="text-align:center;" id="logo">
+                        <p class="logo">Todoapp</p>
+                        <p>
+                            {% if session['screen_name'] %}
+                                Hello {{ session['screen_name'] }}!
+                            {% endif %}
+                        </p>
+                        <br />
+                    </div>
+                    <li><a  class="white-text" href="{{ url_for('main.index') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>Home</a></li>
+                    <li><a  class="light-green-text text-accent-4" href="{{ url_for('main.new') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>New todo</a></li>
+                    <li><a id="links" class="teal-text text-lighten-2" href="{{ url_for('main.category') }}"><i class="white-text fa fa-tag" aria-hidden="true"></i>Categories</a></li>
+                    <li><a id="links" class="deep-orange-text text-accent-4" href="{{ url_for('auth.logout') }}"><i class="white-text fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a></li>
+                </ul>
+            </ul>
+        {% endblock %}
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.0.0.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
 </html>

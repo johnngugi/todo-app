@@ -1,37 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
     {{ super() }}
-				<div class="col s9">
-					<table>
-						<thead>
-							<tr>
-								<th data-field="id">Category</th>
-								<th data-field="name">Description</th>
-								<th data-field="price">Priority</th>
-								<th data-field="date">Creation Date</th>
-                                <th data-field="bool">Done</th>
-							</tr>
-						</thead>
-						<tbody>
-                        {% for todo in todos %}
-							<tr>
-                                <td>{{ todo.category.name }}</td>
-								<td>{{ todo.description }}</td>
-                                <td>{{ todo.priority.name }}</td>
-                                <td>{{ todo.creation_date }}</td>
-                                <td>{% if todo.is_done %}Done{% endif %}</td>
-								<td>
-                                    <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_todo', todo_id=todo.id) }}"><i class="material-icons">edit</i></a>
-                                    <form id=delform action="{{ url_for('main.delete_todo', todo_id=todo.id) }}" method="post">
-                                        <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_todo" value="Delete"><i class="material-icons">delete</i></button>
-                                    </form>
-                                    <form id=delform action="{{ url_for('main.mark_done', todo_id=todo.id) }}" method="post">
-                                        <button class="btn-floating waves-effect waves-light green" type="submit" name="mark_done" value="Done"><i class="material-icons">done</i></button>
-                                    </form>
-								</td>
-                            </tr>
-                        {% endfor %}
-						</tbody>
-					</table>
-				</div>
+    <div class="col s12 m8 l9 offset-l1">
+        <table>
+            <thead>
+                <tr class="row">
+                    <th data-field="id" class="col s2">Category</th>
+                    <th data-field="name" class="col s2">Description</th>
+                    <th data-field="price" class="col s2">Priority</th>
+                    <th data-field="date" class="col s2">Creation Date</th>
+                    <th data-field="bool" class="col s2">Done</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr class="row">
+                        <td class="col s2">{{ todo.category.name }}</td>
+                        <td class="col s2">{{ todo.description }}</td>
+                        <td class="col s2">{{ todo.priority.name }}</td>
+                        <td class="col s2">{{ todo.creation_date }}</td>
+                        <td class="col s2">{% if todo.is_done %}Done{% endif %}</td>
+                        <td class="col s1 bt">
+                            <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_todo', todo_id=todo.id) }}"><i class="material-icons">edit</i></a>
+                            <form id=delform action="{{ url_for('main.delete_todo', todo_id=todo.id) }}" method="post">
+                                <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_todo" value="Delete"><i class="material-icons">delete</i></button>
+                            </form>
+                            <form id=delform action="{{ url_for('main.mark_done', todo_id=todo.id) }}" method="post">
+                                <button class="btn-floating waves-effect waves-light green" type="submit" name="mark_done" value="Done"><i class="material-icons">done</i></button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

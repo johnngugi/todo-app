@@ -3,23 +3,23 @@
     {{ super() }}
     <div class="row" style="margin-top:7%;">
         <div class="col s9 offset-s3">
-        <h3>Categories</h3>
-                    <a class="waves-effect waves-light btn" href="{{ url_for('main.new_category') }}">New Category</a>
-                    <table>
-                        {% for category in categories %}
-                            <tr>
-                                <td>{{ category.name }}</td>
-                                <td>
-                                    <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_category', category_id=category.id) }}"><i class="material-icons">edit</i></a>
-                                    <form id=delform action="{{ url_for('main.delete_category', category_id=category.id) }}" method="post">
-                                        <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_category" value="Delete"><i class="material-icons">delete</i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </table>
-                    </div>
-                </div>
-			</div>
-		</div>
+            <h3>Categories</h3>
+            <a class="waves-effect waves-light btn" href="{{ url_for('main.new_category') }}">New Category</a>
+            <table>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_category', category_id=category.id) }}"><i class="material-icons">edit</i></a>
+                            <form id=delform action="{{ url_for('main.delete_category', category_id=category.id) }}" method="post">
+                                <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_category" value="Delete"><i class="material-icons">delete</i></button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
