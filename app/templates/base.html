@@ -8,20 +8,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-		<nav class="black lightness-2">
-			<div class="container">
-				<div class="nav-wrapper">
-					<a href="{{ url_for('main.index') }}" class="brand-logo">Logo</a>
-					<ul id="nav-mobile" class="right hide-on-med-and-down">
-						<li><a href="{{ url_for('main.new') }}">Todo</a></li>
-						<li><a href="{{ url_for('main.category') }}">Category</a></li>
-                        {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                        {% endif %}
-					</ul>
-				</div>
-			</div>
-		</nav>
+{#		<nav class="black lightness-2">#}
+{#			<div class="container">#}
+{#				<div class="nav-wrapper">#}
+{#					<a href="{{ url_for('main.index') }}" class="brand-logo">Logo</a>#}
+{#					<ul id="nav-mobile" class="right hide-on-med-and-down">#}
+{#						<li><a href="{{ url_for('main.new') }}">Todo</a></li>#}
+{#						<li><a href="{{ url_for('main.category') }}">Category</a></li>#}
+{#                        {% if current_user.is_authenticated %}#}
+{#                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>#}
+{#                        {% endif %}#}
+{#					</ul>#}
+{#				</div>#}
+{#			</div>#}
+{#		</nav>#}
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul>
@@ -31,8 +31,30 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        {% block content %}
-        {% endblock %}
+        <div class="row" style="margin-top:2%;">
+			<div class="container">
+                {% block content %}
+                    <div class="col s3">
+                        <ul id="staggered-list" class="side-nav fixed grey darken-4 blue-grey-text text-lighten-4 go">
+                            <br />
+                            <div style="text-align:center;" id="logo">
+                                <p class="logo">Todoapp</p>
+                                <p>
+                                    {% if session['screen_name'] %}
+                                        Hello {{ session['screen_name'] }}!
+                                    {% endif %}
+                                </p>
+                                <br />
+                            </div>
+                            <br /> <br />
+                            <li><a  class="light-green-text text-accent-4" href="{{ url_for('main.new') }}"><i class="white-text fa fa-list" aria-hidden="true"></i>New todo</a></li>
+                            <li><a id="links" class="teal-text text-lighten-2" href="{{ url_for('main.category') }}"><i class="white-text fa fa-tag" aria-hidden="true"></i>Categories</a></li>
+                            <li><a id="links" class="deep-orange-text text-accent-4" href="{{ url_for('auth.logout') }}"><i class="white-text fa fa-sign-out fa-2x" aria-hidden="true"></i></i>Logout</a></li>
+					    </ul>
+				    </div>
+                {% endblock %}
+            </div>
+        </div>
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.0.0.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>

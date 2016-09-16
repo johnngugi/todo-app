@@ -6,21 +6,26 @@
 				<div class="row">
 					
 					<div class="input-field col s12">
-                        {{ form.description(class_="materialize-textarea") }}
-                        {{ form.description.label }}
+                        <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                        <label for="description">Textarea</label>
 					</div>
 					
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						{{ form.category }}
-                        {{ form.category.label }}
+                        <select name="category" id="category">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {%if todo is defined %}{% if todo.category_id == category.id %} selected {% endif %}{% endif %}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="category"></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						{{ form.priority }}
-                        {{ form.priority.label }}
+                        {% for priority in priorities %}
+                            <option value="{{ priority.id }}" {% if todo is defined %}{% if todo.priority_id == priority.id %} selected {% endif %}{% endif %}>{{ priority.name }}</option>
+                        {% endfor %}
 					</div>
 				</div>
 

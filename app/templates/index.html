@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-        {% if session['screen_name'] %}
-        Hello {{ session['screen_name'] }}!
-        {% endif %}
-		<div class="row" style="margin-top:2%;">
-			<div class="container">
-				<div class="col s3">
-                    {% for category in categories %}
-                        <p>{{ category.name }}</p>
-                    {% endfor %}
-				</div>
+    {{ super() }}
 				<div class="col s9">
 					<table>
 						<thead>
@@ -43,6 +34,4 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-		</div>
 {% endblock %}

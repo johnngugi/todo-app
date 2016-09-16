@@ -18,9 +18,24 @@
 		</div>
 		<div class="row" style="margin-top:7%;">
 			<div class="container">
-				<h3>
-				Categories
-				</h3>
+				<h3>Categories</h3>
+                <div class="row">
+                    <div class="col s12">
+                        <table>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.name }}</td>
+{#                                <td>#}
+{#                                    <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_todo', todo_id=todo.id) }}"><i class="material-icons">edit</i></a>#}
+{#                                    <form id=delform action="{{ url_for('main.delete_todo', todo_id=todo.id) }}" method="post">#}
+{#                                        <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_todo" value="Delete"><i class="material-icons">delete</i></button>#}
+{#                                    </form>#}
+{#								</td>#}
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </div>
+                </div>
 			</div>
 		</div>
 {% endblock %}

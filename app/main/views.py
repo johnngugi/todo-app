@@ -96,4 +96,11 @@ def mark_done(todo_id):
 @main.route('/category')
 @login_required
 def category():
-    return render_template('category.html')
+    if request.method == 'POST':
+        category = Category(name=request.form['category'])
+        db.session.add(category)
+        db.session.commit()
+        return redirect('/')
+    else:
+        return render_template('category.html', categories=Category.query.all(),
+                               todos=Todo.query.join(Priority).order_by(Priority.value.desc()))
