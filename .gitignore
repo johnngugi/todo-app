@@ -2,4 +2,3 @@
 /venv/
 .idea
 *.pyc
-/app/auth/oauth.py
