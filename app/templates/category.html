@@ -1,31 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-		<div class="row" style="margin-top:2%;">
-			<form class="col s6 offset-s3">
-				
-				<div class="row">
-					
-					<div class="input-field col s12">
-						<textarea id="textarea1" class="materialize-textarea"></textarea>
-						<label for="textarea1">Textarea</label>
-					</div>
-					
-				</div>
-				<button class="btn waves-effect waves-light" type="submit" name="action">Create category
-				<i class="material-icons right">send</i>
-				</button>
-			</form>
-		</div>
-		<div class="row" style="margin-top:7%;">
-			<div class="container">
-				<h3>Categories</h3>
-                <div class="row">
-                    <div class="col s12">
-                        <table>
+    <div class="row" style="margin-top:7%;">
+        <div class="container">
+            <h3>Categories</h3>
+            <div class="row">
+                <div class="col s12">
+                    <table>
                         {% for category in categories %}
                             <tr>
                                 <td>{{ category.name }}</td>
-                                <td></td>
+                                <td>
+                                    <a class="btn-floating waves-effect waves-light blue" href="{{ url_for('main.update_category', category_id=category.id) }}"><i class="material-icons">edit</i></a>
+                                    <form id=delform action="{{ url_for('main.delete_category', category_id=category.id) }}" method="post">
+                                        <button class="btn-floating waves-effect waves-light red" type="submit" name="delete_category" value="Delete"><i class="material-icons">delete</i></button>
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                         </table>
