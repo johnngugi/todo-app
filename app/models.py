@@ -38,7 +38,7 @@ class Todo(db.Model):
 
     category = db.relationship('Category', foreign_keys=category_id, backref="todos")
     priority = db.relationship('Priority', foreign_keys=priority_id, backref="todos")
-    user = db.relationship('User', foreign_keys=user_id)
+    user = db.relationship('User', foreign_keys=user_id, backref="author")
 
     def __init__(self, category, priority, description, user):
         self.category = category

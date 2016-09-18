@@ -29,7 +29,8 @@ def index():
 
     return render_template('index.html',
                            categories=Category.query.all(),
-                           todos=Todo.query.join(Priority).order_by(Priority.value.desc()))
+                           todos=Todo.query.join(Priority).order_by(Priority.value.desc()),
+                           users=User.query.all())
 
 
 @main.route('/new', methods=['GET', 'POST'])

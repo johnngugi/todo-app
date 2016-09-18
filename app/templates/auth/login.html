@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row login">
-        <div class="col s6 offset-l4">
-            <p>Welcome to TodoApp</p>
-            <a href="{{ url_for('auth.login') }}"><img src="{{ url_for('static', filename='sign-in.png') }}" alt="sign in"></a>
+    <div class="row">
+        <div class="style"></div>
+
+        <div class="container">
+            <div class="card-panel login">
+                <span class="blue-text">Welcome to TodoApp</span>
+                <a href="{{ url_for('auth.login') }}"><img src="{{ url_for('static', filename='sign-in.png') }}" alt="sign in"></a>
+            </div>
         </div>
-    </div>
-    <div class="">
-			
     </div>
 {% endblock %}
