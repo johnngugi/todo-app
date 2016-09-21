@@ -6,8 +6,9 @@ from flask_login import current_user, login_required
 
 
 @lm.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_user(social_id):
+    current_user = User.query.get(social_id)
+    return current_user
 
 
 @main.before_request
@@ -29,7 +30,7 @@ def index():
 
     return render_template('index.html',
                            categories=Category.query.all(),
-                           todos=Todo.query.join(Priority).order_by(Priority.value.desc()))
+                           todos=Todo.query.join(User))
 
 
 @main.route('/new', methods=['GET', 'POST'])
