@@ -2,9 +2,19 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 .login {
-	font-size: 2em;
-	padding: 10%;
-	vertical-align: center;
+	font-size: 2.5em;
+	text-align: center;
+	position: absolute;
+	left: 25%;
+	width: 50%;
+}
+
+.style {
+	margin-bottom: 15%;
+}
+
+.login a {
+	display: block;
 }
 
 #delform {
